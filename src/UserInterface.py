@@ -26,7 +26,7 @@ class UserInterface():
 
         # TODO: Create a new deck
 
-        # TODO: Display a deck menu and allow use to do things with the deck
+        # TODO: Display a deck menu and allow user to do things with the deck
         pass
 
     def __getIntegerInput(self, prompt, m, n):
