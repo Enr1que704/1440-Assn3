@@ -1,9 +1,11 @@
 import Deck
 import Menu
+import math
 
 
 class UserInterface():
     def __init__(self):
+        self.__m_currentDeck = 0
         pass
 
     def run(self):
@@ -16,18 +18,24 @@ class UserInterface():
         while keepGoing:
             command = menu.show()
             if command == "C":
-                pass
+                self.__createDeck()
             elif command == "X":
                 keepGoing = False
 
     def __createDeck(self):
         """Command to create a new Deck"""
         # TODO: Get the user to specify the card size, max number, and number of cards
+        cardSize = self.__getIntegerInput("Enter the size of the card [3, 16]: ", 3, 16)
+        maxNumber = self.__getIntegerInput("Enter the highest possible value [" + str((3*cardSize*cardSize)) + ", " +
+                                           str(math.floor(3.9*cardSize*cardSize)) + "]: ", 3*cardSize*cardSize,
+                                           math.floor(3.9*cardSize*cardSize))
+        numOfCards = self.__getIntegerInput("Enter the amount of cards [2, 8192]: ", 2, 8192)
 
         # TODO: Create a new deck
-
+        self.__m_currentDeck = Deck.Deck(cardSize, numOfCards, maxNumber)
         # TODO: Display a deck menu and allow user to do things with the deck
-        pass
+        self.__deckMenu()
+
 
     def __getIntegerInput(self, prompt, m, n):
         """
@@ -35,13 +43,27 @@ class UserInterface():
         If the provided input is NOT an integer NOR in the range, repeat the prompt
         Otherwise, convert the user's value to an integer and return it.
         """
-        pass
+        min = m
+        max = n
+        keepGoing = True
+        while keepGoing:
+            val = input(prompt)
+            if val.isdigit():
+                val = int(val)
+                if val < min or val > max:
+                    print("Please enter integer within the range.")
+                    keepGoing = True
+                else:
+                    return val
+            else:
+                keepGoing = True
 
     def __getStringInput(self, prompt):
         """
         Prompt the user for a string and return it
         """
-        pass
+        file = input(prompt)
+        return file
 
     def __deckMenu(self):
         """Present the deck menu to user until a valid selection is chosen"""

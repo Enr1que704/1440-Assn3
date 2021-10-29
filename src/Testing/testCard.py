@@ -6,16 +6,16 @@ import NumberSet
 class TestCard(unittest.TestCase):
     def setUp(self):
         idnum, size = 0, 3
-        self.card0 = Card.Card(idnum, size, NumberSet.NumberSet(3*size*size))
+        self.card0 = Card.Card(idnum, size, 3*size*size)
 
         idnum, size = 1, 5
-        self.card1 = Card.Card(idnum, size, NumberSet.NumberSet(2*size*size))
+        self.card1 = Card.Card(idnum, size, 2*size*size)
 
         idnum, size = 2, 16
-        self.card2 = Card.Card(idnum, size, NumberSet.NumberSet(3*size*size))
+        self.card2 = Card.Card(idnum, size, 3*size*size)
 
         idnum, size = 3, 8
-        self.card3 = Card.Card(idnum, size, NumberSet.NumberSet(2*size*size))
+        self.card3 = Card.Card(idnum, size, 2*size*size)
 
 
     def test_getSize(self):
@@ -74,7 +74,7 @@ class TestCard(unittest.TestCase):
         self.assertIsInstance(self.card2.getSquare(7, 8), int)
         self.assertIsInstance(self.card2.getSquare(8, 7), int)
         self.assertIsInstance(self.card2.getSquare(8, 8), int)
-
+        ## Im not sure if there was a test here before but I promise if there was I didn't intentionally delete it :(
         self.assertIsInstance(self.card3.getSquare(3, 3), int)
         self.assertIsInstance(self.card3.getSquare(3, 4), int)
         self.assertIsInstance(self.card3.getSquare(4, 3), int)
@@ -98,7 +98,7 @@ class TestCard(unittest.TestCase):
                 print(f"Searching for a card with a duplicate number #{i}...")
 
             seen = set()
-            c = Card.Card(i, size, NumberSet.NumberSet(2*size*size))
+            c = Card.Card(i, size, 2*size*size)
             for row in range(size):
                 for col in range(size):
                     n = c.getSquare(row, col)

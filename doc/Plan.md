@@ -2,13 +2,6 @@
 
 ## Phase 0: Requirements Specification *(10%)*
 
-**Deliver:**
-
-*   A detailed written description of the problem this program aims to solve.
-*   Describe what a *good* solution looks like.
-    *   List what you already know how to do.
-    *   Point out any challenges that you can foresee.
-_____________________________________________________________________________
 This problem aims to create a deck of bingo cards (min: 2, max: 8192) based on user input
 Each card will have between (3, 16) rows, based on user input
 Each card will be a square, so if 3 is input, then it would be 3x3. I'm not sure how to do this yet. Maybe print row by row?
@@ -30,12 +23,6 @@ Everything else seems pretty straight forward
 
 ## Phase 1: System Analysis *(10%)*
 
-**Deliver:**
-
-*   List all of the data that is used by the program, making note of where it comes from.
-*   Explain what form the output will take.
-*   Describe what algorithms and formulae will be used (but don't write them yet).
-_____________________________________________________________________________
 Data needed by the program:
 	Size of a card: User input
 	Rows in a card: User input
@@ -86,14 +73,6 @@ class UserInterface()
 
 **Deliver:**
 
-*   Function signatures that include:
-    *   Descriptive names.
-    *   Parameter lists.
-    *   Documentation strings that explain the purpose, inputs and outputs.
-*   Pseudocode that captures how each function works.
-    *   Explain what happens in the face of good and bad input.
-    *   Write a few specific examples that occurred to you.
-_________________________________________________________________________________
 UserInterface():
 __createDeck():
 	prompt user to input card size (int)
@@ -134,14 +113,14 @@ getSquare():
 	unsure, will ask
 print():
 	unsure, will ask
+
 ## Phase 3: Implementation *(15%)*
 
-**Deliver:**
-
-*   (More or less) working Python code.
-*   Note any relevant and interesting events that happened while you wrote the code.
-    *   e.g. things you learned, things that didn't go according to plan
-
+I learned a lot more about interaction between classes, especially passing different class objects in as parameters
+Something that didn't go to plan was when I initially designed my get next, everytime I would call a card to print, it would change
+because it would pick up where it left off in the list instead of starting over at the beginning of the index. 
+Something else that didn't go to plan was my printCard. I learned a lot about format strings so that the numbers would print out in
+an even grid despite being different character lengths.
 
 ## Phase 4: Testing & Debugging *(30%)*
 
@@ -151,32 +130,42 @@ print():
     *   Include a description of what happened for each test case.
     *   For any bugs discovered, describe their cause and remedy.
 *   Write your test cases in plain language such that a non-coder could run them and replicate your experience.
-
+____________________________________________________________________________________________________________
+The test cases that are included in the starter code ran on my computer. Since I didn't change the class structure or any of the method
+functionality, the test cases applied. 
+NumberSet Tests:
+	Tests if the number size is the same as what was passed in: Passed
+	Tests out of bound numbers, if the number is out of bounds, returns none, passed.
+	Tests getNext function by pulling numbers out of numberlist, and then returns none when it runs out of numbers. Passed
+	Tests duplicates: Tests if there are any duplicates. Passed
+Card Tests:
+	Setup failed, as the way numberSet would get called was the actually object. Number set was coded to create the set in the initilizer, and then pass the actual object.
+	problem was resolved by just passing in the max number to NumberSet
+	Tests get size: Passed
+	Tests getID: Passed
+	Tests free square: Failed at first, as I incorporated free square into the print function, so it wasn't getting detected. I just copy pasted my code into getSquare and it passed.
+	Tests duplicates: Passed
+Deck Tests:
+	Tests get card count: Passed
+	Tests getting individual card from deck: Passed
+Menu Tests:
+	I didn't modify menu at all, so the tests passed without problem.
 
 ## Phase 5: Deployment *(5%)*
 
-**Deliver:**
-
-*   Your repository pushed to GitLab.
-*   **Verify** that your final commit was received by browsing to its project page on GitLab.
-    *   Review the project to ensure that all required files are present and in correct locations.
-*   **Validate** that your submission is complete and correct by cloning it to a new location on your computer and re-running it.
-    *   Run through your test cases to avoid nasty surprises.
-
-
 ## Phase 6: Maintenance
 
-**Deliver:**
+The sloppiest part of my program is getting integer input, and printing a card to the screen. These were 2 functions I struggled with, so
+its not as well written and thought out as I might have hoped.
+However, there are no parts of the program that I don't understand. 
+If a bug was reported, it would be very easy to find, as I used all the different classes and methods included, so no method or class does
+everything, making it easy to locate where the issue may be
 
-*   Write brief and honest answers to these questions: *(Note: do this before you complete **Phase 5: Deployment**)*
-    *   What parts of your program are sloppily written and hard to understand?
-        *   Are there parts of your program which you aren't quite sure how/why they work?
-        *   If a bug is reported in a few months, how long would it take you to find the cause?
-    *   Will your documentation make sense to
-        *   anybody besides yourself?
-        *   yourself in six month's time?
-    *   How easy will it be to add a new feature to this program in a year?
-    *   Will your program continue to work after upgrading
-        *   your computer's hardware?
-        *   the operating system?
-        *   to the next version of Python?
+My documentation should make sense, as I tried to write it in as plain of language as possible. 
+It should still make sense to me in 6 months.
+
+It will be very easy to add new features, since as mentioned above, it was all made using the classes. All it would take is adding a new
+class or method
+
+Since everything was written using standard python, it will still work despite any changes that may get made. If anything, it will run
+faster if upgrading the hardware. 

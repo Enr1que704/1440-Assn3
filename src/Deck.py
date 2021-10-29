@@ -7,11 +7,17 @@ import NumberSet
 class Deck():
     def __init__(self, cardSize, cardCount, numberMax):
         """Deck constructor"""
-        pass
+        self.__cardSize = cardSize
+        self.__m_cardCount = cardCount
+        self.__numberMax = numberMax
+        self.__m_cards = []
+        for i in range(0, cardCount):
+            self.__m_cards.append(Card.Card(i, self.__cardSize, numberMax))
+
             
     def getCardCount(self):
         """Return an integer: the number of cards in this deck"""
-        pass
+        return len(self.__m_cards)
 
     def getCard(self, n):
         """Return card N from the deck"""
@@ -34,3 +40,4 @@ class Deck():
             print('', file=file)
         else:
             self.getCard(idx).print(file)
+
