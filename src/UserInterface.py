@@ -6,7 +6,6 @@ import math
 class UserInterface():
     def __init__(self):
         self.__m_currentDeck = 0
-        pass
 
     def run(self):
         """Present the main menu to the user and repeatedly prompt for a valid command"""
@@ -24,16 +23,12 @@ class UserInterface():
 
     def __createDeck(self):
         """Command to create a new Deck"""
-        # TODO: Get the user to specify the card size, max number, and number of cards
         cardSize = self.__getIntegerInput("Enter the size of the card [3, 16]: ", 3, 16)
         maxNumber = self.__getIntegerInput("Enter the highest possible value [" + str((3*cardSize*cardSize)) + ", " +
                                            str(math.floor(3.9*cardSize*cardSize)) + "]: ", 3*cardSize*cardSize,
                                            math.floor(3.9*cardSize*cardSize))
         numOfCards = self.__getIntegerInput("Enter the amount of cards [2, 8192]: ", 2, 8192)
-
-        # TODO: Create a new deck
         self.__m_currentDeck = Deck.Deck(cardSize, numOfCards, maxNumber)
-        # TODO: Display a deck menu and allow user to do things with the deck
         self.__deckMenu()
 
 
@@ -96,7 +91,6 @@ class UserInterface():
         """Command to save a deck to a file"""
         fileName = self.__getStringInput("Enter output file name")
         if fileName != "":
-            # TODO: open a file and pass to currentDeck.print()
             outputStream = open(fileName, 'w')
             self.__m_currentDeck.print(outputStream)
             outputStream.close()
